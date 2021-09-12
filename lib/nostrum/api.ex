@@ -1515,6 +1515,30 @@ defmodule Nostrum.Api do
     |> bangify
   end
 
+  @doc ~S"""
+  Get a list of active guild threads.
+
+  If successful, returns `{:ok, threads}`. Otherwise returns a `t:Nostrum.Api.error/0`.
+
+  ## Examples
+  ```Elixir
+  Nostrum.Api.get_guild_threads(81384788765712384)
+  {:ok, [&Nostrum.Struct.Channel{guild_id: 81384788765712384} | _]}
+  ```
+  """
+  def get_guild_threads(guild_id) when is_snowflake(guild_id) do
+    request(:get, Constants.guild_active_threads(guild_id))
+    |> handle_request_with_decode({:list, {:struct, Channel}})
+  end
+
+  @doc ~S"""
+  Same as `get_guild_threads/1`, but raises `Nostrum.Error.ApiError` in case of failure.
+  """
+  def get_guild_threads!(guild_id) when is_snowflake(guild_id) do
+    get_guild_threads(guild_id)
+    |> bangify
+  end
+
   @doc """
   Creates a channel for a guild.
 

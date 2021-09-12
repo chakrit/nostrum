@@ -1,7 +1,7 @@
 defmodule Nostrum.Constants do
   @moduledoc false
 
-  def base_url, do: "https://discord.com/api/v9"
+  def base_url, do: "https://discord.com/api/v8"
   def cdn_url, do: "https://cdn.discordapp.com"
   def gateway, do: "/gateway"
   def gateway_bot, do: "/gateway/bot"
@@ -39,6 +39,7 @@ defmodule Nostrum.Constants do
 
   def guilds, do: "/guilds"
   def guild(guild_id), do: "/guilds/#{guild_id}"
+  def guild_active_threads(guild_id), do: "/guilds/#{guild_id}/threads/active"
   def guild_channels(guild_id), do: "/guilds/#{guild_id}/channels"
   def guild_members(guild_id), do: "/guilds/#{guild_id}/members"
   def guild_member(guild_id, user_id), do: "/guilds/#{guild_id}/members/#{user_id}"
